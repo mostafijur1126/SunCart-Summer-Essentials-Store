@@ -1,9 +1,14 @@
 "use client";
-import { Link, Button } from "@heroui/react";
+import { Button } from "@heroui/react";
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+
 const NavbarSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
       <header className="flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
@@ -18,17 +23,26 @@ const NavbarSection = () => {
         </div>
         <ul className="hidden md:flex items-center gap-2 sm:gap-3 md:gap-4">
           <li>
-            <Link href="#" className="text-sm sm:text-base">
+            <Link
+              href="/"
+              className={`text-sm sm:text-base ${pathname === "/" ? " border-b-2 border-red-500" : ""}`}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link href="#" className="text-sm sm:text-base">
+            <Link
+              href="/products"
+              className={`text-sm sm:text-base ${pathname === "/products" ? " border-b-2 border-red-500" : ""}`}
+            >
               Products
             </Link>
           </li>
           <li>
-            <Link href="#" className="text-sm sm:text-base">
+            <Link
+              href="my-profile"
+              className={`text-sm sm:text-base ${pathname === "/my-profile" ? " border-b-2 border-red-500" : ""}`}
+            >
               My Profile
             </Link>
           </li>
@@ -64,8 +78,8 @@ const NavbarSection = () => {
         <ul className="flex flex-col items-center gap-4 py-6">
           <li>
             <Link
-              href="#"
-              className="text-base"
+              href="/"
+              className={`text-base ${pathname === "/" ? " text-red-500" : ""}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Home
@@ -73,8 +87,8 @@ const NavbarSection = () => {
           </li>
           <li>
             <Link
-              href="#"
-              className="text-base"
+              href="/products"
+              className={`text-base ${pathname === "/products" ? " text-red-500" : ""}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Products
@@ -82,8 +96,8 @@ const NavbarSection = () => {
           </li>
           <li>
             <Link
-              href="#"
-              className="text-base"
+              href="/my-profile"
+              className={`text-base ${pathname === "/my-profile" ? " text-red-500" : ""}`}
               onClick={() => setIsMenuOpen(false)}
             >
               My Profile
