@@ -10,7 +10,7 @@ const NavbarSection = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
+    <nav className="sticky top-0 z-40 w-full border-b border-[#E2DCD1] bg-[#FFF9F0]/80 backdrop-blur-lg">
       <header className="flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
         <div className="flex items-center gap-2 sm:gap-3">
           <Image
@@ -19,13 +19,17 @@ const NavbarSection = () => {
             width={100}
             height={50}
             className="w-auto h-auto max-w-[80px] sm:max-w-[100px]"
-          ></Image>
+          />
         </div>
-        <ul className="hidden md:flex items-center gap-2 sm:gap-3 md:gap-4">
+        <ul className="hidden md:flex items-center gap-2 sm:gap-3 md:gap-6">
           <li>
             <Link
               href="/"
-              className={`text-sm sm:text-base ${pathname === "/" ? " border-b-2 border-red-500" : ""}`}
+              className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
+                pathname === "/"
+                  ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
             >
               Home
             </Link>
@@ -33,15 +37,23 @@ const NavbarSection = () => {
           <li>
             <Link
               href="/products"
-              className={`text-sm sm:text-base ${pathname === "/products" ? " border-b-2 border-red-500" : ""}`}
+              className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
+                pathname === "/products"
+                  ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
             >
               Products
             </Link>
           </li>
           <li>
             <Link
-              href="my-profile"
-              className={`text-sm sm:text-base ${pathname === "/my-profile" ? " border-b-2 border-red-500" : ""}`}
+              href="/my-profile"
+              className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
+                pathname === "/my-profile"
+                  ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
             >
               My Profile
             </Link>
@@ -49,8 +61,8 @@ const NavbarSection = () => {
         </ul>
         <div className="hidden md:block">
           <Button
-            variant="outline"
-            className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
+            variant="bordered"
+            className="text-sm sm:text-sm px-4 sm:px-5 py-2 rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
           >
             Login / Register
           </Button>
@@ -61,25 +73,36 @@ const NavbarSection = () => {
           className="md:hidden flex flex-col gap-1.5 p-2"
         >
           <span
-            className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+            className={`w-6 h-0.5 bg-[#2C3E3E] transition-all duration-300 rounded-full ${
+              isMenuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
           ></span>
           <span
-            className={`w-6 h-0.5 bg-current transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-[#2C3E3E] transition-all duration-300 rounded-full ${
+              isMenuOpen ? "opacity-0" : ""
+            }`}
+          ></span>
+          <span
+            className={`w-6 h-0.5 bg-[#2C3E3E] transition-all duration-300 rounded-full ${
               isMenuOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           ></span>
         </button>
       </header>
       <div
-        className={`md:hidden absolute top-16 left-0 w-full bg-background/95 backdrop-blur-lg border-b border-separator transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute top-16 left-0 w-full bg-[#FFF9F0]/95 backdrop-blur-lg border-b border-[#E2DCD1] transition-all duration-300 overflow-hidden ${
           isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="flex flex-col items-center gap-4 py-6">
+        <ul className="flex flex-col items-center gap-5 py-6">
           <li>
             <Link
               href="/"
-              className={`text-base ${pathname === "/" ? " text-red-500" : ""}`}
+              className={`text-base font-medium transition-colors duration-200 ${
+                pathname === "/"
+                  ? "text-[#FF9B82]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               Home
@@ -88,7 +111,11 @@ const NavbarSection = () => {
           <li>
             <Link
               href="/products"
-              className={`text-base ${pathname === "/products" ? " text-red-500" : ""}`}
+              className={`text-base font-medium transition-colors duration-200 ${
+                pathname === "/products"
+                  ? "text-[#FF9B82]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               Products
@@ -97,7 +124,11 @@ const NavbarSection = () => {
           <li>
             <Link
               href="/my-profile"
-              className={`text-base ${pathname === "/my-profile" ? " text-red-500" : ""}`}
+              className={`text-base font-medium transition-colors duration-200 ${
+                pathname === "/my-profile"
+                  ? "text-[#FF9B82]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               My Profile
@@ -105,8 +136,8 @@ const NavbarSection = () => {
           </li>
           <li className="pt-2">
             <Button
-              variant="outline"
-              className="text-sm px-4 py-2"
+              variant="bordered"
+              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Login / Register
