@@ -20,9 +20,7 @@ import {
 const HeroSection = () => {
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 min-h-[90vh] flex items-center">
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Shapes */}
         <motion.div
           animate={{
             y: [0, -30, 0],
@@ -57,31 +55,17 @@ const HeroSection = () => {
         >
           <GiBeachBall />
         </motion.div>
-
-        {/* Floating Circles */}
-        <motion.div
-          animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.1, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity }}
-          className="absolute -top-20 -left-20 w-64 h-64 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.1, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute -bottom-20 -right-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl"
-        />
       </div>
 
       {/* Main Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="text-white space-y-6 md:space-y-8"
           >
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,7 +76,6 @@ const HeroSection = () => {
               <span>LIMITED TIME OFFER</span>
             </motion.div>
 
-            {/* Main Title */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,7 +89,6 @@ const HeroSection = () => {
               </span>
             </motion.h1>
 
-            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -117,7 +99,6 @@ const HeroSection = () => {
               summer essentials. Limited time offer. Dont miss out!
             </motion.p>
 
-            {/* Countdown Timer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -147,7 +128,6 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,7 +151,6 @@ const HeroSection = () => {
               </motion.button>
             </motion.div>
 
-            {/* Trust Badges */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -191,7 +170,6 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Image/Animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -199,7 +177,6 @@ const HeroSection = () => {
             className="relative flex justify-center items-center"
           >
             <div className="relative w-full max-w-md mx-auto">
-              {/* Main Circle Background */}
               <motion.div
                 animate={{
                   scale: [1, 1.05, 1],
@@ -209,7 +186,6 @@ const HeroSection = () => {
                 className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 rounded-full blur-3xl opacity-30"
               />
 
-              {/* Floating Cards */}
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -242,7 +218,6 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* Second Floating Card */}
               <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
@@ -275,7 +250,6 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* Discount Badge */}
               <motion.div
                 animate={{
                   scale: [1, 1.1, 1],
@@ -291,7 +265,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Wave Decoration */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
