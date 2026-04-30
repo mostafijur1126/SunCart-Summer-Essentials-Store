@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { GiIceCreamCone, GiWatermelon } from "react-icons/gi";
-import { FaEnvelope, FaGoogle, FaSun } from "react-icons/fa";
+import { FaGoogle, FaSun } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 
@@ -41,6 +41,11 @@ const LoginPage = () => {
         position: "top-center",
       });
     }
+  };
+  const handelGoogleSingIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
   };
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] flex items-center justify-center px-4 py-12 md:py-16">
@@ -187,6 +192,7 @@ const LoginPage = () => {
             </div>
           </div>
           <motion.button
+            onClick={handelGoogleSingIn}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="w-full flex items-center justify-center gap-3 bg-white border border-[#E2DCD1] rounded-full px-4 py-3 text-[#2C3E3E] font-medium hover:shadow-md hover:border-[#FFB7A4] transition-all duration-300"

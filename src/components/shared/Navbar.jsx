@@ -4,10 +4,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { Avatar } from "@heroui/react";
 
 const NavbarSection = () => {
+  const { data } = authClient.useSession();
+  const userData = data?.user;
+  console.log(userData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handelLogout = () => {
+    authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login"); // redirect to login page
+        },
+      },
+    });
+  };
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-[#E2DCD1] bg-[#FFF9F0]/80 backdrop-blur-lg">
@@ -46,38 +63,56 @@ const NavbarSection = () => {
               Products
             </Link>
           </li>
-          <li>
-            <Link
-              href="/my-profile"
-              className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
-                pathname === "/my-profile"
-                  ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
-                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
-              }`}
-            >
-              My Profile
-            </Link>
-          </li>
+          {userData && (
+            <li>
+              <Link
+                href="/my-profile"
+                className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
+                  pathname === "/my-profile"
+                    ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
+                    : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+                }`}
+              >
+                My Profile
+              </Link>
+            </li>
+          )}
         </ul>
         <div className="hidden md:block space-x-2">
-          <Link href="/login">
-            <Button
-              variant="bordered"
-              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Login
-            </Button>
-          </Link>
-          <Link href="/register">
-            <Button
-              variant="bordered"
-              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Register
-            </Button>
-          </Link>
+          {userData && (
+            <div className="flex gap-2">
+              <Avatar>
+                <Avatar.Image alt={userData.name} src={userData.image} />
+                <Avatar.Fallback>{userData.name}</Avatar.Fallback>
+              </Avatar>
+              <Link
+                href="#"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={handelLogout}
+              >
+                Logout
+              </Link>
+            </div>
+          )}
+          {!userData && (
+            <>
+              <Link
+                href="/login"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/register"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
         <button
           aria-label="Toggle menu"
@@ -147,23 +182,21 @@ const NavbarSection = () => {
             </Link>
           </li>
           <li className="pt-2 space-x-1">
-            <Link href="/login">
-              <Button
-                variant="bordered"
-                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Login
-              </Button>
+            <Link
+              href="/login"
+              variant="bordered"
+              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Login
             </Link>
-            <Link href="/register">
-              <Button
-                variant="bordered"
-                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Register
-              </Button>
+            <Link
+              href="/register"
+              variant="bordered"
+              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Register
             </Link>
           </li>
         </ul>
