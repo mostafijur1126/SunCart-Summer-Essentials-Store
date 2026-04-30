@@ -13,11 +13,43 @@ import {
 } from "@heroui/react";
 import { GiIceCreamCone, GiSunglasses, GiWatermelon } from "react-icons/gi";
 import { FaGoogle, FaSun, FaUser } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const LoginPage = () => {
-  const onSubmit = (e) => {
+  const router = useRouter();
+  const [authError, setAuthError] = useState(null);
+  const onSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
+    const { name, email, password, image } = userData;
+    // console.log(name, email, password, image);
+
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+      image,
+    });
+    // console.log(data, error);
+    if (data) {
+      setAuthError(null);
+      toast.success("Login successfull!", {
+        position: "top-center",
+      });
+      router.push("/");
+    }
+    if (error) {
+      setAuthError(error.message);
+      toast.error(`${error.message}`, {
+        position: "top-center",
+      });
+    }
   };
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] flex items-center justify-center px-4 py-12 md:py-16">
       <div className="absolute inset-0 overflow-hidden">
@@ -88,17 +120,7 @@ const LoginPage = () => {
             </p>
           </div>
           <Form className="flex w-full flex-col gap-5" onSubmit={onSubmit}>
-            <TextField
-              isRequired
-              name="name"
-              type="text"
-              validate={(value) => {
-                if (value.length < 2) {
-                  return "Name must be at least 2 characters";
-                }
-                return null;
-              }}
-            >
+            <TextField isRequired name="name" type="text">
               <Label className="text-[#2C3E3E] font-medium">Full Name</Label>
               <Input
                 placeholder="John Doe"
@@ -114,6 +136,7 @@ const LoginPage = () => {
                 if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                   return "Please enter a valid email address";
                 }
+
                 return null;
               }}
             >
@@ -124,11 +147,14 @@ const LoginPage = () => {
                 placeholder="summer@example.com"
                 className="border-[#E2DCD1] focus:border-[#FFB7A4]"
               />
+              <Description className="text-red-500">
+                {authError && authError}
+              </Description>
               <FieldError className="text-[#FF9B82]" />
             </TextField>
             <TextField
               isRequired
-              name="photoUrl"
+              name="image"
               validate={(value) => {
                 if (
                   value &&

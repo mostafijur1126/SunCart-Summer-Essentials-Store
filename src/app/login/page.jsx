@@ -13,10 +13,34 @@ import {
 } from "@heroui/react";
 import { GiIceCreamCone, GiWatermelon } from "react-icons/gi";
 import { FaEnvelope, FaGoogle, FaSun } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
+    const { email, password } = userData;
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    // console.log(data, error);
+    if (data) {
+      //   setAuthError(null);
+      toast.success("Login successfull!", {
+        position: "top-center",
+      });
+    }
+    if (error) {
+      //   setAuthError(error.message);
+      toast.error(`${error.message}`, {
+        position: "top-center",
+      });
+    }
   };
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] flex items-center justify-center px-4 py-12 md:py-16">
