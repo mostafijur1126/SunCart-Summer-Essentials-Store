@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Card, Chip } from "@heroui/react";
 import { FaStar } from "react-icons/fa";
 import { CgDollar } from "react-icons/cg";
+import Link from "next/link";
 
 const PopularProducts = async () => {
   const res = await fetch(
@@ -50,12 +51,14 @@ const PopularProducts = async () => {
                       </p>
                     </div>
                   </div>
-                  <Button
-                    variant="bordered"
-                    className="w-full border-[#FFB7A4] text-[#FFB7A4] hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300 font-semibold rounded-full"
-                  >
-                    View Details
-                  </Button>
+                  <Link href={`/products/${product.id}`}>
+                    <Button
+                      variant="bordered"
+                      className="w-full border-[#FFB7A4] text-[#FFB7A4] hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300 font-semibold rounded-full"
+                    >
+                      View Details
+                    </Button>
+                  </Link>
                 </div>
               </Card>
             </div>
