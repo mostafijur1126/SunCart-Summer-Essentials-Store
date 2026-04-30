@@ -59,13 +59,25 @@ const NavbarSection = () => {
             </Link>
           </li>
         </ul>
-        <div className="hidden md:block">
-          <Button
-            variant="bordered"
-            className="text-sm sm:text-sm px-4 sm:px-5 py-2 rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-          >
-            Login / Register
-          </Button>
+        <div className="hidden md:block space-x-2">
+          <Link href="/login">
+            <Button
+              variant="bordered"
+              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Login
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button
+              variant="bordered"
+              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Register
+            </Button>
+          </Link>
         </div>
         <button
           aria-label="Toggle menu"
@@ -134,14 +146,25 @@ const NavbarSection = () => {
               My Profile
             </Link>
           </li>
-          <li className="pt-2">
-            <Button
-              variant="bordered"
-              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Login / Register
-            </Button>
+          <li className="pt-2 space-x-1">
+            <Link href="/login">
+              <Button
+                variant="bordered"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button
+                variant="bordered"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Register
+              </Button>
+            </Link>
           </li>
         </ul>
       </div>
