@@ -10,12 +10,11 @@ export async function proxy(request) {
   if (!session) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-  return NextResponse.next();
 }
 
 // Alternatively, you can use a default export:
 // export default function proxy(request) { ... }
 
 export const config = {
-  matcher: ["/my-profile", "/products/:path*"],
+  matcher: ["/my-profile", "/products/:path"],
 };

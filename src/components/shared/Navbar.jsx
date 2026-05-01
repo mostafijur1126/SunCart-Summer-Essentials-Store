@@ -29,13 +29,13 @@ const NavbarSection = () => {
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-[#E2DCD1] bg-[#FFF9F0]/80 backdrop-blur-lg">
       <header className="flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="relative w-[120px] h-[60px]">
           <Image
             src="/logo.png"
             alt="Logo"
-            width={100}
-            height={50}
-            className="w-auto h-auto max-w-[80px] sm:max-w-[100px]"
+            fill
+            sizes="120px"
+            className="object-contain"
           />
         </div>
         <ul className="hidden md:flex items-center gap-2 sm:gap-3 md:gap-6">
@@ -81,8 +81,8 @@ const NavbarSection = () => {
           {userData && (
             <div className="flex gap-2">
               <Avatar>
-                <Avatar.Image alt={userData.name} src={userData.image} />
-                <Avatar.Fallback>{userData.name}</Avatar.Fallback>
+                <Avatar.Image alt={userData?.name} src={userData?.image} />
+                <Avatar.Fallback>{userData?.name}</Avatar.Fallback>
               </Avatar>
               <Link
                 href="#"
