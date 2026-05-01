@@ -63,20 +63,19 @@ const NavbarSection = () => {
               Products
             </Link>
           </li>
-          {userData && (
-            <li>
-              <Link
-                href="/my-profile"
-                className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
-                  pathname === "/my-profile"
-                    ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
-                    : "text-[#2C3E3E] hover:text-[#FFB7A4]"
-                }`}
-              >
-                My Profile
-              </Link>
-            </li>
-          )}
+
+          <li>
+            <Link
+              href="/my-profile"
+              className={`text-sm sm:text-base font-medium transition-colors duration-200 ${
+                pathname === "/my-profile"
+                  ? "text-[#FF9B82] border-b-2 border-[#FFB7A4]"
+                  : "text-[#2C3E3E] hover:text-[#FFB7A4]"
+              }`}
+            >
+              My Profile
+            </Link>
+          </li>
         </ul>
         <div className="hidden md:block space-x-2">
           {userData && (
