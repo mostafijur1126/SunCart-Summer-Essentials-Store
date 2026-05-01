@@ -11,7 +11,7 @@ import { Avatar } from "@heroui/react";
 const NavbarSection = () => {
   const { data } = authClient.useSession();
   const userData = data?.user;
-  console.log(userData);
+  // console.log(userData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -180,24 +180,41 @@ const NavbarSection = () => {
               My Profile
             </Link>
           </li>
-          <li className="pt-2 space-x-1">
-            <Link
-              href="/login"
-              variant="bordered"
-              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              variant="bordered"
-              className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Register
-            </Link>
-          </li>
+          {userData && (
+            <div className="flex gap-2">
+              <Avatar>
+                <Avatar.Image alt={userData?.name} src={userData?.image} />
+                <Avatar.Fallback>{userData?.name}</Avatar.Fallback>
+              </Avatar>
+              <Link
+                href="#"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={handelLogout}
+              >
+                Logout
+              </Link>
+            </div>
+          )}
+          {!userData && (
+            <li className="pt-2 space-x-1">
+              <Link
+                href="/login"
+                variant="bordered"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                variant="bordered"
+                className="rounded-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] font-semibold px-6 py-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Register
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
