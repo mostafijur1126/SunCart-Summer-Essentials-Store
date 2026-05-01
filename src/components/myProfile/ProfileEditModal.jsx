@@ -1,19 +1,23 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Envelope } from "@gravity-ui/icons";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { FaEdit, FaImage, FaUser } from "react-icons/fa";
 
 export function ProfileEditModal() {
+  //   const { data } = authClient.useSession();
+  //   const userData = data?.user;
   const onSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const image = e.target.image.value;
-    await authClient.updateUser({
-      image,
-      name,
-    });
+    const form = e.target;
+    const name = form?.name?.value;
+    const image = form?.image?.value;
+    const payload = {};
+
+    if (name) payload.name = name;
+    if (image) payload.image = image;
+
+    await authClient.updateUser(payload);
   };
   return (
     <Modal>
@@ -48,6 +52,7 @@ export function ProfileEditModal() {
                       Name
                     </Label>
                     <Input
+                      name="name"
                       placeholder="Enter your name"
                       className="w-full text-[#2C3E3E] placeholder:text-[#2C3E3E]/40 border-2 border-[#E2DCD1] bg-white rounded-xl hover:border-[#FFB7A4] focus-within:border-[#FFB7A4] focus-within:ring-2 focus-within:ring-[#FFB7A4]/20 transition-all duration-200"
                     />
@@ -58,6 +63,7 @@ export function ProfileEditModal() {
                       Photo URL
                     </Label>
                     <Input
+                      name="image"
                       placeholder="Enter your photo URL"
                       className="w-full text-[#2C3E3E] placeholder:text-[#2C3E3E]/40 border-2 border-[#E2DCD1] bg-white rounded-xl hover:border-[#FFB7A4] focus-within:border-[#FFB7A4] focus-within:ring-2 focus-within:ring-[#FFB7A4]/20 transition-all duration-200"
                     />

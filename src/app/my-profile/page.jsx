@@ -6,7 +6,6 @@ import {
   FaUser,
   FaEnvelope,
   FaCalendarAlt,
-  FaEdit,
   FaSignOutAlt,
 } from "react-icons/fa";
 import { Avatar } from "@heroui/react";
@@ -15,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { ProfileEditModal } from "@/components/myProfile/ProfileEditModal";
 
 const MyProfilePage = () => {
-  const { data } = authClient.useSession();
+  const { data, isPending } = authClient.useSession();
   const userData = data?.user;
   const router = useRouter();
   const handelLogout = () => {
@@ -71,79 +70,82 @@ const MyProfilePage = () => {
         <div className="absolute bottom-0 -left-20 w-96 h-96 bg-[#E8F3EF] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8 text-center"
-        >
-          <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E3E]">
-            My Profile
-          </h1>
-          <p className="text-[#2C3E3E]/60 mt-1">
-            Manage your account information
-          </p>
-        </motion.div>
+      {isPending ? (
+        <div className="flex items-center justify-center text-4xl">
+          Loading...
+        </div>
+      ) : (
+        <div className="relative z-10 max-w-4xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8 text-center"
+          >
+            <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E3E]">
+              My Profile
+            </h1>
+            <p className="text-[#2C3E3E]/60 mt-1">
+              Manage your account information
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-[#FFF9F0]/90 backdrop-blur-sm rounded-2xl border border-[#E2DCD1] shadow-xl overflow-hidden"
+          >
+            {/* Cover Image */}
+            <div className="h-32 bg-gradient-to-r from-[#FFB7A4]/30 to-[#FF9B82]/30"></div>
 
-        {/* Profile Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-[#FFF9F0]/90 backdrop-blur-sm rounded-2xl border border-[#E2DCD1] shadow-xl overflow-hidden"
-        >
-          {/* Cover Image */}
-          <div className="h-32 bg-gradient-to-r from-[#FFB7A4]/30 to-[#FF9B82]/30"></div>
+            {/* Profile Info */}
+            <div className="relative px-6 pb-6">
+              {/* Avatar */}
+              <div className="flex justify-center -mt-16 mb-4">
+                <div className="relative">
+                  <Avatar className="w-28 h-28 mx-auto border-4 border-white shadow-xl">
+                    <Avatar.Image alt={userData?.name} src={userData?.image} />
+                    <Avatar.Fallback>
+                      <FaUser className="text-3xl text-[#FFB7A4]" />
+                    </Avatar.Fallback>
+                  </Avatar>
+                </div>
+              </div>
 
-          {/* Profile Info */}
-          <div className="relative px-6 pb-6">
-            {/* Avatar */}
-            <div className="flex justify-center -mt-16 mb-4">
-              <div className="relative">
-                <Avatar className="w-28 h-28 mx-auto border-4 border-white shadow-xl">
-                  <Avatar.Image alt={userData?.name} src={userData?.image} />
-                  <Avatar.Fallback>
-                    <FaUser className="text-3xl text-[#FFB7A4]" />
-                  </Avatar.Fallback>
-                </Avatar>
+              {/* User Details */}
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold text-[#2C3E3E]">
+                  {userData?.name}
+                </h2>
+                <div className="flex items-center justify-center gap-2 mt-2 text-[#2C3E3E]/60">
+                  <FaEnvelope className="text-sm" />
+                  <span className="text-sm">{userData?.email}</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 mt-1 text-[#2C3E3E]/50 text-xs">
+                  <FaCalendarAlt className="text-xs" />
+                  <span>
+                    Member since
+                    {new Date(userData?.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <ProfileEditModal></ProfileEditModal>
+
+                <button
+                  onClick={handelLogout}
+                  className="w-full border border-red-300 text-red-500 font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-red-50 transition-all duration-300"
+                >
+                  <FaSignOutAlt className="text-sm" />
+                  Logout
+                </button>
               </div>
             </div>
-
-            {/* User Details */}
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-[#2C3E3E]">
-                {userData?.name}
-              </h2>
-              <div className="flex items-center justify-center gap-2 mt-2 text-[#2C3E3E]/60">
-                <FaEnvelope className="text-sm" />
-                <span className="text-sm">{userData?.email}</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 mt-1 text-[#2C3E3E]/50 text-xs">
-                <FaCalendarAlt className="text-xs" />
-                <span>
-                  Member since
-                  {new Date(userData?.createdAt).toLocaleDateString()}
-                </span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="space-y-3">
-              <ProfileEditModal></ProfileEditModal>
-
-              <button
-                onClick={handelLogout}
-                className="w-full border border-red-300 text-red-500 font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-red-50 transition-all duration-300"
-              >
-                <FaSignOutAlt className="text-sm" />
-                Logout
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };

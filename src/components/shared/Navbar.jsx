@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -9,9 +8,9 @@ import { useRouter } from "next/navigation";
 import { Avatar } from "@heroui/react";
 
 const NavbarSection = () => {
-  const { data } = authClient.useSession();
+  const { data, isPending } = authClient.useSession();
   const userData = data?.user;
-  // console.log(userData);
+  // console.log(isPending);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -34,6 +33,7 @@ const NavbarSection = () => {
             src="/logo.png"
             alt="Logo"
             fill
+            priority
             sizes="120px"
             className="object-contain"
           />
@@ -78,10 +78,15 @@ const NavbarSection = () => {
           </li>
         </ul>
         <div className="hidden md:block space-x-2">
-          {userData && (
+          {isPending ? (
+            <div className="h-9 w-32 rounded-full bg-gray-200 animate-pulse" />
+          ) : userData ? (
             <div className="flex gap-2">
               <Avatar>
-                <Avatar.Image alt={userData?.name} src={userData?.image} />
+                <Avatar.Image
+                  alt={userData?.name}
+                  src={userData?.image || undefined}
+                />
                 <Avatar.Fallback>{userData?.name}</Avatar.Fallback>
               </Avatar>
               <Link
@@ -92,8 +97,7 @@ const NavbarSection = () => {
                 Logout
               </Link>
             </div>
-          )}
-          {!userData && (
+          ) : (
             <>
               <Link
                 href="/login"
@@ -180,10 +184,15 @@ const NavbarSection = () => {
               My Profile
             </Link>
           </li>
-          {userData && (
+          {isPending ? (
+            <div className="text-[#FF9B82]">Loading...</div>
+          ) : userData ? (
             <div className="flex gap-2">
               <Avatar>
-                <Avatar.Image alt={userData?.name} src={userData?.image} />
+                <Avatar.Image
+                  alt={userData?.name}
+                  src={userData?.image || undefined}
+                />
                 <Avatar.Fallback>{userData?.name}</Avatar.Fallback>
               </Avatar>
               <Link
@@ -194,8 +203,7 @@ const NavbarSection = () => {
                 Logout
               </Link>
             </div>
-          )}
-          {!userData && (
+          ) : (
             <li className="pt-2 space-x-1">
               <Link
                 href="/login"

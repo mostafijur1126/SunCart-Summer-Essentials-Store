@@ -20,7 +20,7 @@ const ProductDetailsPage = async ({ params }) => {
     (product) => Number(product.id) === Number(id),
   );
 
-  console.log(expectedProduct);
+  // console.log(expectedProduct);
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] py-16 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
