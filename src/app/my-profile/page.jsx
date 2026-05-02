@@ -22,6 +22,7 @@ const MyProfilePage = () => {
       fetchOptions: {
         onSuccess: () => {
           router.push("/login");
+          router.refresh();
         },
       },
     });

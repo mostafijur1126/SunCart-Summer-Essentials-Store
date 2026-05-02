@@ -19,7 +19,8 @@ const NavbarSection = () => {
     authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/login"); // redirect to login page
+          router.push("/login");
+          router.refresh();
         },
       },
     });
@@ -27,7 +28,7 @@ const NavbarSection = () => {
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-[#E2DCD1] bg-[#FFF9F0]/80 backdrop-blur-lg">
-      <header className="flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
+      <header className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
         <div className="relative w-[120px] h-[60px]">
           <Image
             src="/logo.png"
