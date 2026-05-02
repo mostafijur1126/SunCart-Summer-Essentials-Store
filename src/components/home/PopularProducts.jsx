@@ -55,7 +55,7 @@ const PopularProducts = async () => {
                     <Link href={`/products/${product.id}`}>
                       <Button
                         variant="bordered"
-                        className="w-full border-[#FFB7A4] text-[#FFB7A4] hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300 font-semibold rounded-full"
+                        className="w-full border-2 border-[#FFB7A4] bg-transparent text-[#FFB7A4] hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300 font-semibold rounded-full"
                       >
                         View Details
                       </Button>

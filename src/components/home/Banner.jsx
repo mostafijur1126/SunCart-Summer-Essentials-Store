@@ -160,7 +160,7 @@ const HeroSection = () => {
                 </motion.button>
               </Link>
 
-              <Link href="#">
+              <Link href="/products">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -175,7 +175,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-wrap gap-6 pt-6"
+              className="flex flex-wrap gap-6 mb-10"
             >
               {[
                 { icon: <FaTshirt />, text: "Premium Quality" },
