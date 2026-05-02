@@ -17,14 +17,20 @@ export function ProfileEditModal() {
     if (name) payload.name = name;
     if (image) payload.image = image;
 
-    const { data, error } = await authClient.updateUser(payload);
-    if (data) {
-      toast.success("Profile updated successfully!", {
-        position: "top-center",
-      });
-    }
-    if (error) {
-      toast.error(error.message || "Update failed!", {
+    try {
+      const { data, error } = await authClient.updateUser(payload);
+      if (data) {
+        toast.success("Profile updated successfully!", {
+          position: "top-center",
+        });
+      }
+      if (error) {
+        toast.error(error.message || "Update failed!", {
+          position: "top-center",
+        });
+      }
+    } catch (err) {
+      toast.error("Something went wrong!", {
         position: "top-center",
       });
     }
