@@ -47,16 +47,11 @@ const LoginPage = () => {
   };
   const handelGoogleSingIn = async () => {
     setLoading(true);
-    try {
-      await authClient.signIn.social({
-        provider: "google",
-      });
-    } catch (err) {
-      toast.error("Goggle login failed!", {
-        position: "top-center",
-      });
-      setLoading(false);
-    }
+
+    await authClient.signIn.social({
+      provider: "google",
+    });
+    setLoading(false);
   };
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] flex items-center justify-center px-4 py-12 md:py-16">

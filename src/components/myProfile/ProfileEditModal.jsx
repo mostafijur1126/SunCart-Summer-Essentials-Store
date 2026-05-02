@@ -3,6 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { FaEdit, FaImage, FaUser } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export function ProfileEditModal() {
   //   const { data } = authClient.useSession();
@@ -17,23 +18,18 @@ export function ProfileEditModal() {
     if (name) payload.name = name;
     if (image) payload.image = image;
 
-    try {
-      const { data, error } = await authClient.updateUser(payload);
-      if (data) {
-        toast.success("Profile updated successfully!", {
-          position: "top-center",
-        });
-      }
-      if (error) {
-        toast.error(error.message || "Update failed!", {
-          position: "top-center",
-        });
-      }
-    } catch (err) {
-      toast.error("Something went wrong!", {
+    const { data, error } = await authClient.updateUser(payload);
+    if (data) {
+      toast.success("Profile updated successfully!", {
         position: "top-center",
       });
     }
+    if (error) {
+      toast.error(error.message || "Update failed!", {
+        position: "top-center",
+      });
+    }
+    console.log(data, error);
   };
   return (
     <Modal>
