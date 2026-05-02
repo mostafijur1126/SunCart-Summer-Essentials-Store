@@ -1,5 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import {
   FaFire,
   FaShoppingCart,
@@ -148,21 +150,25 @@ const HeroSection = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#FFB7A4] text-[#2C3E3E] px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:bg-[#FF9B82] transition-all duration-300"
-              >
-                Shop Now <FaArrowRight />
-              </motion.button>
+              <Link href="/products">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-[#FFB7A4] text-[#2C3E3E] px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:bg-[#FF9B82] transition-all duration-300"
+                >
+                  Shop Now <FaArrowRight />
+                </motion.button>
+              </Link>
 
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-[#FFB7A4] text-[#2C3E3E] px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
-              >
-                <FaShoppingCart /> View Collection
-              </motion.button>
+              <Link href="#">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-[#FFB7A4] text-[#2C3E3E] px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#FFB7A4] hover:text-[#2C3E3E] transition-all duration-300"
+                >
+                  <FaShoppingCart /> View Collection
+                </motion.button>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -217,8 +223,14 @@ const HeroSection = () => {
                   </div>
                   <span className="text-[#FF9B82] font-bold">-40%</span>
                 </div>
-                <div className="bg-gradient-to-r from-[#FFB7A4] to-[#FF9B82] h-32 rounded-xl flex items-center justify-center">
-                  <FaSun className="text-6xl text-white" />
+                <div className="h-40 w-full relative overflow-hidden bg-gray-100 rounded-2xl">
+                  <Image
+                    src="/water.webp"
+                    alt="water"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width:768px) 100vw, 33vw"
+                  ></Image>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
@@ -229,9 +241,11 @@ const HeroSection = () => {
                       $29.99
                     </span>
                   </div>
-                  <button className="bg-[#FFB7A4] text-[#2C3E3E] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#FF9B82] transition">
-                    Buy Now
-                  </button>
+                  <Link href="/products">
+                    <button className="bg-[#FFB7A4] text-[#2C3E3E] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#FF9B82] transition">
+                      Buy Now
+                    </button>
+                  </Link>
                 </div>
               </motion.div>
 
@@ -251,8 +265,14 @@ const HeroSection = () => {
                     HOT DEAL
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-[#FFF0D3] to-[#E8F3EF] h-32 rounded-xl flex items-center justify-center">
-                  <GiWatermelon className="text-6xl text-[#FFB7A4]" />
+                <div className="h-40 relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/fan.jpg"
+                    alt="fan"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width:768px) 100vw, 33vw"
+                  ></Image>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
@@ -263,9 +283,11 @@ const HeroSection = () => {
                       $19.99
                     </span>
                   </div>
-                  <button className="bg-[#FFB7A4] text-[#2C3E3E] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#FF9B82] transition">
-                    Shop Now
-                  </button>
+                  <Link href="/products">
+                    <button className="bg-[#FFB7A4] text-[#2C3E3E] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#FF9B82] transition">
+                      Shop Now
+                    </button>
+                  </Link>
                 </div>
               </motion.div>
 
@@ -275,7 +297,7 @@ const HeroSection = () => {
                   rotate: [0, 10, -10, 0],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -top-6 -right-6 bg-gradient-to-r from-[#FFB7A4] to-[#FF9B82] text-[#2C3E3E] rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg"
+                className="absolute -top-15 -right-6 bg-gradient-to-r from-[#FFB7A4] to-[#FF9B82] text-[#2C3E3E] rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg"
               >
                 <span className="text-2xl font-bold">50%</span>
                 <span className="text-xs">OFF</span>

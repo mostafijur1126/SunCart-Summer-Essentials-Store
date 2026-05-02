@@ -29,16 +29,18 @@ const NavbarSection = () => {
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-[#E2DCD1] bg-[#FFF9F0]/80 backdrop-blur-lg">
       <header className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
-        <div className="relative w-[120px] h-[60px]">
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            fill
-            priority
-            sizes="120px"
-            className="object-contain"
-          />
-        </div>
+        <Link href="/">
+          <div className="relative w-[120px] h-[60px]">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              fill
+              priority
+              sizes="120px"
+              className="object-contain"
+            />
+          </div>
+        </Link>
         <ul className="hidden md:flex items-center gap-2 sm:gap-3 md:gap-6">
           <li>
             <Link

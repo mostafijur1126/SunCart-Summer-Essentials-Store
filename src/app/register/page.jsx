@@ -37,7 +37,7 @@ const LoginPage = () => {
     // console.log(data, error);
     if (data) {
       setAuthError(null);
-      toast.success("Login successfull!", {
+      toast.success("Registion successfull!", {
         position: "top-center",
       });
       router.push("/");
