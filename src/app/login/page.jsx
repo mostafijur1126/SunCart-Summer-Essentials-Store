@@ -15,8 +15,11 @@ import { GiIceCreamCone, GiWatermelon } from "react-icons/gi";
 import { FaGoogle, FaSun } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -43,9 +46,17 @@ const LoginPage = () => {
     }
   };
   const handelGoogleSingIn = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-    });
+    setLoading(true);
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+      });
+    } catch (err) {
+      toast.error("Goggle login failed!", {
+        position: "top-center",
+      });
+      setLoading(false);
+    }
   };
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] flex items-center justify-center px-4 py-12 md:py-16">
@@ -193,11 +204,16 @@ const LoginPage = () => {
           </div>
           <motion.button
             onClick={handelGoogleSingIn}
+            disabled={loading}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="w-full flex items-center justify-center gap-3 bg-white border border-[#E2DCD1] rounded-full px-4 py-3 text-[#2C3E3E] font-medium hover:shadow-md hover:border-[#FFB7A4] transition-all duration-300"
           >
-            <FaGoogle className="text-[#FFB7A4] text-lg"></FaGoogle>
+            {loading ? (
+              "Redirecting..."
+            ) : (
+              <FaGoogle className="text-[#FFB7A4] text-lg"></FaGoogle>
+            )}
           </motion.button>
           <div className="text-center mt-6 pt-4 border-t border-[#E2DCD1]">
             <p className="text-sm text-[#2C3E3E]/60">

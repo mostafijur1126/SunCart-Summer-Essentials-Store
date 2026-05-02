@@ -17,7 +17,17 @@ export function ProfileEditModal() {
     if (name) payload.name = name;
     if (image) payload.image = image;
 
-    await authClient.updateUser(payload);
+    const { data, error } = await authClient.updateUser(payload);
+    if (data) {
+      toast.success("Profile updated successfully!", {
+        position: "top-center",
+      });
+    }
+    if (error) {
+      toast.error(error.message || "Update failed!", {
+        position: "top-center",
+      });
+    }
   };
   return (
     <Modal>
