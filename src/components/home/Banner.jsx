@@ -252,7 +252,7 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
-                className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-[#E2DCD1]"
+                className="z-20 relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-[#E2DCD1]"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
