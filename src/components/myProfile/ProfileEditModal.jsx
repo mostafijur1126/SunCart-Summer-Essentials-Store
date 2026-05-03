@@ -58,7 +58,15 @@ export function ProfileEditModal() {
             <Modal.Body className="p-6">
               <Surface variant="default" className="bg-transparent shadow-none">
                 <form onSubmit={onSubmit} className="flex flex-col gap-5">
-                  <TextField className="space-y-2">
+                  <TextField
+                    validate={(value) => {
+                      if (value.length < 3) {
+                        return "Name must be at least 3 characters";
+                      }
+                      return null;
+                    }}
+                    className="space-y-2"
+                  >
                     <Label className="text-[#2C3E3E] font-semibold text-sm flex items-center gap-2">
                       <FaUser className="text-[#FFB7A4] text-xs" />
                       Name
@@ -69,7 +77,18 @@ export function ProfileEditModal() {
                       className="w-full text-[#2C3E3E] placeholder:text-[#2C3E3E]/40 border-2 border-[#E2DCD1] bg-white rounded-xl hover:border-[#FFB7A4] focus-within:border-[#FFB7A4] focus-within:ring-2 focus-within:ring-[#FFB7A4]/20 transition-all duration-200"
                     />
                   </TextField>
-                  <TextField className="space-y-2">
+                  <TextField
+                    validate={(value) => {
+                      if (
+                        value &&
+                        !/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(value)
+                      ) {
+                        return "Please enter a valid image URL (jpg, png, gif, webp)";
+                      }
+                      return null;
+                    }}
+                    className="space-y-2"
+                  >
                     <Label className="text-[#2C3E3E] font-semibold text-sm flex items-center gap-2">
                       <FaImage className="text-[#FFB7A4] text-xs" />
                       Photo URL
