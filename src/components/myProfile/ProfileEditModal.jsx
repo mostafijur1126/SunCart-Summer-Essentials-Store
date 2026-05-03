@@ -21,15 +21,15 @@ export function ProfileEditModal() {
     const { data, error } = await authClient.updateUser(payload);
     if (data) {
       toast.success("Profile updated successfully!", {
-        position: "top-center",
+        position: "top-left",
       });
     }
     if (error) {
       toast.error(error.message || "Update failed!", {
-        position: "top-center",
+        position: "top-left",
       });
     }
-    console.log(data, error);
+    // console.log(data, error);
   };
   return (
     <Modal>

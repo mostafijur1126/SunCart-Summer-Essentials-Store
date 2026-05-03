@@ -62,7 +62,6 @@ const SummerCareTips = () => {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#FFF9F0] via-[#E8F3EF] to-[#FFF0D3] py-16 md:py-24">
-      {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
@@ -85,13 +84,11 @@ const SummerCareTips = () => {
           <GiWaterDrop />
         </motion.div>
 
-        {/* Floating Circles */}
         <div className="absolute top-0 -left-20 w-72 h-72 bg-[#FFB7A4] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div className="absolute bottom-0 -right-20 w-96 h-96 bg-[#E8F3EF] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 bg-[#FFB7A4]/20 text-[#FF9B82] px-4 py-2 rounded-full text-sm font-semibold mb-4 backdrop-blur-sm">
             <GiSunglasses />
@@ -107,7 +104,6 @@ const SummerCareTips = () => {
           </p>
         </motion.div>
 
-        {/* Main Tips Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {tips.map((tip, index) => (
             <motion.div
@@ -139,7 +135,6 @@ const SummerCareTips = () => {
           ))}
         </div>
 
-        {/* Quick Tips Section */}
         <motion.div className="bg-gradient-to-r from-[#FFB7A4] to-[#FF9B82] rounded-3xl p-8 md:p-10 text-[#2C3E3E] relative overflow-hidden shadow-xl">
           <div className="relative z-10">
             <div className="text-center mb-8">
@@ -168,7 +163,6 @@ const SummerCareTips = () => {
           </div>
         </motion.div>
 
-        {/* Hydration Tracker */}
         <motion.div
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 bg-[#FFF9F0] rounded-2xl shadow-md p-6 md:p-8 border border-[#E2DCD1]"

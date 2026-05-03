@@ -33,7 +33,7 @@ const PopularProducts = async () => {
                     <Chip className="absolute top-3 right-3 bg-[#FFB7A4] text-[#2C3E3E] border-none font-semibold shadow-sm">
                       {product.category}
                     </Chip>
-                    {/* Sale badge for some products example */}
+
                     {product.price > 30 && (
                       <div className="absolute top-3 left-3 bg-[#FF9B82] text-[#2C3E3E] text-xs font-bold px-2 py-1 rounded-full shadow-sm">
                         SALE

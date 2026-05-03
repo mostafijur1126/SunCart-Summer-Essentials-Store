@@ -38,14 +38,15 @@ const LoginPage = () => {
     if (data) {
       setAuthError(null);
       toast.success("Registion successfull!", {
-        position: "top-center",
+        position: "top-left",
       });
       router.push("/");
+      router.refresh();
     }
     if (error) {
       setAuthError(error.message);
       toast.error(`${error.message}`, {
-        position: "top-center",
+        position: "top-left",
       });
     }
   };

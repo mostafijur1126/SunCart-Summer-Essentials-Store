@@ -71,7 +71,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Main Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div

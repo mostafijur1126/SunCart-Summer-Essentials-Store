@@ -16,9 +16,11 @@ import { FaGoogle, FaSun } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,13 +37,14 @@ const LoginPage = () => {
     if (data) {
       //   setAuthError(null);
       toast.success("Login successfull!", {
-        position: "top-center",
+        position: "top-left",
       });
+      router.refresh();
     }
     if (error) {
       //   setAuthError(error.message);
       toast.error(`${error.message}`, {
-        position: "top-center",
+        position: "top-left",
       });
     }
   };

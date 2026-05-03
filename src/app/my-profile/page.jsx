@@ -66,7 +66,6 @@ const MyProfilePage = () => {
           <GiSunglasses />
         </motion.div>
 
-        {/* Floating Circles */}
         <div className="absolute top-0 -right-20 w-72 h-72 bg-[#FFB7A4] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div className="absolute bottom-0 -left-20 w-96 h-96 bg-[#E8F3EF] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
       </div>
@@ -77,7 +76,6 @@ const MyProfilePage = () => {
         </div>
       ) : (
         <div className="relative z-10 max-w-4xl mx-auto">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,12 +94,9 @@ const MyProfilePage = () => {
             transition={{ duration: 0.6 }}
             className="bg-[#FFF9F0]/90 backdrop-blur-sm rounded-2xl border border-[#E2DCD1] shadow-xl overflow-hidden"
           >
-            {/* Cover Image */}
             <div className="h-32 bg-gradient-to-r from-[#FFB7A4]/30 to-[#FF9B82]/30"></div>
 
-            {/* Profile Info */}
             <div className="relative px-6 pb-6">
-              {/* Avatar */}
               <div className="flex justify-center -mt-16 mb-4">
                 <div className="relative">
                   <Avatar className="w-28 h-28 mx-auto border-4 border-white shadow-xl">
@@ -113,7 +108,6 @@ const MyProfilePage = () => {
                 </div>
               </div>
 
-              {/* User Details */}
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold text-[#2C3E3E]">
                   {userData?.name}
@@ -131,7 +125,6 @@ const MyProfilePage = () => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="space-y-3">
                 <ProfileEditModal></ProfileEditModal>
 
