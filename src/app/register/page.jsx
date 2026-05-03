@@ -40,7 +40,7 @@ const LoginPage = () => {
       toast.success("Registion successfull!", {
         position: "top-left",
       });
-      router.push("/");
+      router.push("/login");
       router.refresh();
     }
     if (error) {
