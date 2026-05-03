@@ -128,7 +128,7 @@ const LoginPage = () => {
             <TextField isRequired name="name" type="text">
               <Label className="text-[#2C3E3E] font-medium">Full Name</Label>
               <Input
-                placeholder="John Doe"
+                placeholder="Inter your name"
                 className="border-[#E2DCD1] focus:border-[#FFB7A4]"
               />
               <FieldError className="text-[#FF9B82]" />
